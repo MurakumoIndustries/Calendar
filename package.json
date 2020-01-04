@@ -1,0 +1,60 @@
+{
+    "name": "Calendar",
+    "version": "1.0.0",
+    "description": "Murakumo Industries|Calendar",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "watch": "cross-env NODE_ENV=development webpack --config webpack.dev.js --progress --colors --watch",
+        "build": "cross-env NODE_ENV=production webpack --config webpack.prod.js --progress --colors --display-error-details"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/MurakumoIndustries/Calendar.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/MurakumoIndustries/Calendar/issues"
+    },
+    "homepage": "https://github.com/MurakumoIndustries/Calendar#readme",
+    "devDependencies": {
+        "autoprefixer": "^9.7.3",
+        "clean-webpack-plugin": "^3.0.0",
+        "copy-webpack-plugin": "^5.1.1",
+        "cross-env": "^6.0.3",
+        "css-loader": "^3.4.0",
+        "file-loader": "^5.0.2",
+        "html-webpack-plugin": "^3.2.0",
+        "mini-css-extract-plugin": "^0.9.0",
+        "node-sass": "^4.13.0",
+        "postcss-loader": "^3.0.0",
+        "sass-loader": "^8.0.0",
+        "style-loader": "^1.1.2",
+        "url-loader": "^3.0.0",
+        "vue-loader": "^15.8.3",
+        "vue-template-compiler": "^2.6.11",
+        "webpack": "^4.41.4",
+        "webpack-bundle-analyzer": "^3.6.0",
+        "webpack-cli": "^3.3.10",
+        "webpack-merge": "^4.2.2",
+        "webpack-pwa-manifest": "^4.1.1",
+        "webpack-visualizer-plugin": "^0.1.11"
+    },
+    "dependencies": {
+        "bootstrap": "^4.4.1",
+        "jquery": "^3.4.1",
+        "localforage": "^1.7.3",
+        "lodash": "^4.17.15",
+        "material-design-icons-iconfont": "^5.0.1",
+        "nprogress": "^0.2.0",
+        "offline-plugin": "^5.0.7",
+        "page": "^1.11.5",
+        "popper.js": "^1.16.0",
+        "vue": "^2.6.11",
+        "vuex": "^3.1.2",
+        "workbox-routing": "^4.3.1",
+        "workbox-strategies": "^4.3.1"
+    }
+}
