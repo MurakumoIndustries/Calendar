@@ -20,7 +20,10 @@
     },
     "homepage": "https://github.com/MurakumoIndustries/Calendar#readme",
     "devDependencies": {
+        "@babel/core": "^7.8.0",
+        "@babel/preset-env": "^7.8.0",
         "autoprefixer": "^9.7.3",
+        "babel-loader": "^8.0.6",
         "clean-webpack-plugin": "^3.0.0",
         "copy-webpack-plugin": "^5.1.1",
         "cross-env": "^6.0.3",
