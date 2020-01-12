@@ -130,7 +130,7 @@
                             @click.prevent="toggleCache()"
                         >{{Ui.getText(cacheDisabled?"enablecache":"disablecache")}}</a>
                         <div class="dropdown-divider"></div>
-                        <div class="form-group px-2 m-0" style="min-width: 14rem;">
+                        <div class="form-group px-2 m-0">
                             <div class="input-group">
                                 <input
                                     type="text"
@@ -142,14 +142,12 @@
                                     class="form-control"
                                     v-model.number="windowHeight"
                                 />
-                                <div class="input-group-append">
-                                    <button
-                                        class="btn btn-outline-primary"
-                                        type="button"
-                                        @click="exportImage()"
-                                    >{{Ui.getText("export")}}</button>
-                                </div>
                             </div>
+                            <button
+                                class="btn btn-outline-primary mt-2 float-right"
+                                type="button"
+                                @click="exportImage()"
+                            >{{Ui.getText("export")}}</button>
                         </div>
                     </ul>
                 </li>
