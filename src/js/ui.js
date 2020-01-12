@@ -21,6 +21,7 @@ var currentLang = '';
 var data = [];
 //navbar
 data["today"] = { "ja-JP": "今日", "zh-TW": "今日", "en-US": "Today", "zh-CN": "今天" };
+data["export"] = { "ja-JP": "エクスポート", "zh-TW": "匯出", "en-US": "Export", "zh-CN": "导出" };
 
 data["chara"] = { "ja-JP": "キャラ", "zh-TW": "角色", "en-US": "Character", "zh-CN": "角色" };
 data["originalchara"] = { "ja-JP": "オリジナル", "zh-TW": "原創", "en-US": "Original", "zh-CN": "原创" };
@@ -134,48 +135,6 @@ data["weekly"] = {
     "zh-TW": "週",
     "en-US": "Weekly",
     "zh-CN": "周",
-};
-
-data["attribute"] = {
-    "ja-JP": "属性",
-    "zh-TW": "屬性",
-    "en-US": "Attribute",
-    "zh-CN": "属性",
-    0: { "ja-JP": "打撃", "zh-TW": "打擊", "en-US": "Blow", "zh-CN": "打击" },
-    1: { "ja-JP": "斬撃", "zh-TW": "斬擊", "en-US": "Slash", "zh-CN": "斩击" },
-    2: { "ja-JP": "実弾", "zh-TW": "實彈", "en-US": "Bullet", "zh-CN": "实弹" },
-    3: { "ja-JP": "エネルギー", "zh-TW": "能量", "en-US": "Beam", "zh-CN": "能量" },
-    4: { "ja-JP": "無", "zh-TW": "無", "en-US": "Normal", "zh-CN": "无" },
-    5: { "ja-JP": "電撃", "zh-TW": "電擊", "en-US": "Thunder", "zh-CN": "电击" },
-    6: { "ja-JP": "重力", "zh-TW": "重力", "en-US": "Gravity", "zh-CN": "重力" },
-    7: { "ja-JP": "焼夷", "zh-TW": "燃燒", "en-US": "Fire", "zh-CN": "烧夷" },
-    8: { "ja-JP": "冷撃", "zh-TW": "冷凍", "en-US": "Ice", "zh-CN": "冷击" },
-    9: { "ja-JP": "撃光", "zh-TW": "擊光", "en-US": "Light", "zh-CN": "" },
-    10: { "ja-JP": "崩壊", "zh-TW": "崩壞", "en-US": "Collapse", "zh-CN": "" },
-    11: { "ja-JP": "理論", "zh-TW": "理論", "en-US": "Theory", "zh-CN": "" },
-    //255:{ "ja-JP": "なし", "zh-TW": "", "en-US": "Nothing", "zh-CN": "" },
-    255: { "ja-JP": "", "zh-TW": "", "en-US": "", "zh-CN": "" },
-};
-
-data["gear"] = {
-    "ja-JP": "ギア",
-    "zh-TW": "武裝",
-    "en-US": "Gear",
-    "zh-CN": "装备",
-};
-
-data["costume"] = {
-    "ja-JP": "コスチューム",
-    "zh-TW": "衣裝",
-    "en-US": "Costume",
-    "zh-CN": "服装",
-};
-
-data["accessory"] = {
-    "ja-JP": "アクセサリー",
-    "zh-TW": "飾品",
-    "en-US": "Accessory",
-    "zh-CN": "饰品",
 };
 
 
