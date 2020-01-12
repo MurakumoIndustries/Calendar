@@ -84,20 +84,31 @@ export default {
         rows: function() {
             var rows = 0;
             var firstDay = new Date(this.year, this.month - 1, 1);
-            var lastDay = new Date(this.year, this.month, 1);
+            var lastDay = new Date(this.year, this.month, 0);
             if (firstDay.getDay() < this.firstDayOfWeek) {
                 firstDay.setDate(
-                    this.firstDayOfWeek - firstDay.getDay() - 7 + 1
+                    this.firstDayOfWeek -
+                        firstDay.getDay() -
+                        7 +
+                        firstDay.getDate()
                 );
             } else {
-                firstDay.setDate(this.firstDayOfWeek - firstDay.getDay() + 1);
+                firstDay.setDate(
+                    this.firstDayOfWeek - firstDay.getDay() + firstDay.getDate()
+                );
             }
             if (lastDay.getDay() < this.firstDayOfWeek) {
-                lastDay.setDate(this.firstDayOfWeek - lastDay.getDay() - 7 + 1);
+                lastDay.setDate(
+                    this.firstDayOfWeek -
+                        lastDay.getDay() -
+                        7 +
+                        lastDay.getDate()
+                );
             } else {
-                lastDay.setDate(this.firstDayOfWeek - lastDay.getDay() + 1);
+                lastDay.setDate(
+                    this.firstDayOfWeek - lastDay.getDay() + lastDay.getDate()
+                );
             }
-            console.log(firstDay);
             return (
                 Math.floor((lastDay - firstDay) / 1000 / 60 / 60 / 24 / 7) + 1
             );
@@ -112,10 +123,15 @@ export default {
             var firstDay = new Date(this.year, this.month - 1, 1);
             if (firstDay.getDay() < this.firstDayOfWeek) {
                 firstDay.setDate(
-                    this.firstDayOfWeek - firstDay.getDay() - 7 + 1
+                    this.firstDayOfWeek -
+                        firstDay.getDay() -
+                        7 +
+                        firstDay.getDate()
                 );
             } else {
-                firstDay.setDate(this.firstDayOfWeek - firstDay.getDay() + 1);
+                firstDay.setDate(
+                    this.firstDayOfWeek - firstDay.getDay() + firstDay.getDate()
+                );
             }
             firstDay.setDate(firstDay.getDate() + (row - 1) * 7 + col - 1);
             return firstDay;

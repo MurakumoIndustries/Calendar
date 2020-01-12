@@ -20,10 +20,16 @@ const Store = new Vuex.Store({
             return '/type/' + state.type + '/date/' + date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
         },
         prevMonth: function (state) {
-            return '/type/' + state.type + '/date/' + (state.month == 1 ? state.year - 1 : state.year) + '/' + (state.month == 1 ? 12 : state.month - 1) + '/' + 1;
+            return '/type/' + state.type + '/date/' + (state.month == 1 ? state.year - 1 : state.year) + '/' + (state.month == 1 ? 12 : state.month - 1) + '/' + state.day;
         },
         nextMonth: function (state) {
-            return '/type/' + state.type + '/date/' + (state.month == 12 ? state.year + 1 : state.year) + '/' + (state.month == 12 ? 1 : state.month + 1) + '/' + 1;
+            return '/type/' + state.type + '/date/' + (state.month == 12 ? state.year + 1 : state.year) + '/' + (state.month == 12 ? 1 : state.month + 1) + '/' + state.day;
+        },
+        prevYear: function (state) {
+            return '/type/' + state.type + '/date/' + (state.year - 1) + '/' + state.month + '/' + state.day;
+        },
+        nextYear: function (state) {
+            return '/type/' + state.type + '/date/' + (state.year + 1) + '/' + state.month + '/' + state.day;
         },
     },
     mutations: {
