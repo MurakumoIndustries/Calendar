@@ -3,7 +3,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
             <div class="modal-content">
                 <div class="row">
-                    <div class="col-12 col-lg-auto">
+                    <div class="col-12 col-lg-auto text-center">
                         <div class="chara-img-container">
                             <a target="_blank" :href="'/Actress/#!/actress/'+actress.actressId">
                                 <img
@@ -88,6 +88,14 @@
                         </div>
                     </div>
                 </div>
+                <button
+                    type="button"
+                    class="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
         </div>
     </div>
@@ -143,7 +151,9 @@ export default {
     }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
+@import "~bootstrap/scss/bootstrap";
+
 .actress-resume-singleline {
     height: 100%;
     display: flex;
@@ -153,7 +163,14 @@ export default {
     padding-right: 2rem;
 }
 
+@include media-breakpoint-down(lg) {
+    .actress-resume-singleline {
+        padding: 2rem 1rem 0 1rem;
+    }
+}
+
 .chara-img-container {
+    display: inline-block;
     text-align: center;
     border: 2px solid rgb(144, 144, 144);
     border-radius: 10px;
@@ -165,6 +182,15 @@ export default {
 }
 .chara-img-container > img {
     border-radius: 10px;
+}
+
+.close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    background: #ddd;
 }
 </style>
 
