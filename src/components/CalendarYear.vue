@@ -23,13 +23,7 @@
                     :key="labelIndex"
                     class="col text-center date-label-container"
                 >
-                    <span
-                        class="date-label"
-                        :class="{                       
-                    'is-sat':(labelIndex-1+firstDayOfWeek)%7==6,
-                    'is-sun':(labelIndex-1+firstDayOfWeek)%7==0,
-                    }"
-                    >{{weekLabel[(labelIndex-1+firstDayOfWeek)%7]}}</span>
+                    <span class="date-label">{{weekLabel[(labelIndex-1+firstDayOfWeek)%7]}}</span>
                 </div>
             </div>
             <div v-for="i in rows" :key="i" class="row flex-fill">
@@ -42,8 +36,8 @@
                     @click="isDateInMonth(i,j)&&openDetail(i,j)"
                 >
                     <span
-                        class="date-num"
                         :class="{
+                        'date-num':true,
                     'is-sat':(j-1+firstDayOfWeek)%7==6,
                     'is-sun':(j-1+firstDayOfWeek)%7==0,
                 }"
@@ -188,10 +182,10 @@ export default {
     color: #bbb !important;
 }
 
-.is-sat {
+.date-num.is-sat {
     color: #0099ff;
 }
-.is-sun {
+.date-num.is-sun {
     color: #ff0099;
 }
 .date-num-container .actress-icon {

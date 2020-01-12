@@ -1,5 +1,6 @@
 <template>
     <div class="main-container container-fluid background h-100">
+        <CalendarYear v-if="calendarType==1" />
         <CalendarMonth v-if="calendarType==2" />
         <Detail />
     </div>
@@ -9,6 +10,7 @@
 import html2canvas from "html2canvas";
 import { saveAs } from "file-saver";
 
+import CalendarYear from "./CalendarYear.vue";
 import CalendarMonth from "./CalendarMonth.vue";
 import Detail from "./Detail.vue";
 
@@ -54,6 +56,7 @@ export default {
         }
     },
     components: {
+        CalendarYear,
         CalendarMonth,
         Detail
     }
