@@ -22,7 +22,11 @@
     overflow-x: hidden;"
         >
             <div class="row flex-fill">
-                <div v-for="month in 12" :key="month" class="col-12 col-sm-6 col-md-4 col-lg-3 pt-0 pb-4 px-4">
+                <div
+                    v-for="month in 12"
+                    :key="month"
+                    class="col-12 col-sm-6 col-md-4 col-lg-3 pt-0 pb-4 px-4"
+                >
                     <div class="row max-width">
                         <h5 class="col text-center">{{paddedMonth(month)}}</h5>
                     </div>
@@ -50,7 +54,7 @@
                     'has-actress':isDateInMonth(month,i,j)&&hasActress(month,i,j)}"
                             @click="isDateInMonth(month,i,j)&&openDetail(month,i,j)"
                         >
-                            <span
+                            <div
                                 v-if="isDateInMonth(month,i,j)&&hasActress(month,i,j)"
                                 class="actress-icon"
                                 :title="getDateOfMonth(month,i,j)"
@@ -58,15 +62,15 @@
                                 <img
                                     :src="'../img/chara/' + actressList[month][i][j].miniIcon + '.png'"
                                 />
-                            </span>
-                            <span
+                            </div>
+                            <div
                                 v-else
                                 class="date-num"
                                 :class="{
                     'is-sat':(j-1+firstDayOfWeek)%7==6,
                     'is-sun':(j-1+firstDayOfWeek)%7==0,
                 }"
-                            >{{getDateOfMonth(month,i,j)}}</span>
+                            >{{getDateOfMonth(month,i,j)}}</div>
                         </div>
                     </div>
                 </div>
@@ -197,21 +201,22 @@ export default {
 
 .date-label-container {
     position: relative;
-    padding: 0 0 0rem 0;
+    padding: 0;
 }
 .date-label-container .date-label {
 }
 
 .date-num-container {
     position: relative;
-    padding: 0 0 0rem 0;
+    padding: 0;
     user-select: none;
 }
 .date-num-container.has-actress {
     cursor: pointer;
 }
 .date-num-container .date-num {
-    line-height: 2rem;
+    line-height: 1.5rem;
+    padding-top: 0.5rem;
 }
 
 .date-num-container.not-in-month {
