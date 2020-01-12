@@ -44,6 +44,8 @@
     },
     "dependencies": {
         "bootstrap": "^4.4.1",
+        "file-saver": "^2.0.2",
+        "html2canvas": "^1.0.0-rc.5",
         "jquery": "^3.4.1",
         "localforage": "^1.7.3",
         "lodash": "^4.17.15",

@@ -14,8 +14,8 @@ module.exports = {
         main: './src/index.js'
     },
     output: {
-        filename: '[name].[chunkhash].js',
-        chunkFilename: '[name].[chunkhash].js',
+        filename: '[name].[contenthash].js',
+        chunkFilename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'docs')
     },
     optimization: {
