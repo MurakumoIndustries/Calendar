@@ -1,26 +1,28 @@
 <template>
-    <div class="main-container container-fluid background">
-        
+    <div class="main-container container-fluid background h-100">
+        <CalendarMonth v-if="calendarType==2" />
         <Detail />
     </div>
 </template>
 
 <script>
-import { Data } from "../js/data.js";
-import { Event } from "../js/event.js";
-import { Ui } from "../js/ui.js";
-
+import CalendarMonth from "./CalendarMonth.vue";
 import Detail from "./Detail.vue";
 
 export default {
     data: function() {
-        return {
-        };
+        return {};
     },
     created: function() {
         var $vm = this;
     },
+    computed: {
+        calendarType: function() {
+            return this.$store.state.type;
+        }
+    },
     components: {
+        CalendarMonth,
         Detail
     }
 };

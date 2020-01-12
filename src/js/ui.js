@@ -186,6 +186,27 @@ data["month"] = {
     12: { "ja-JP": "12月", "zh-TW": "十二月", "en-US": "December", "zh-CN": "十二月" },
 };
 
+data["yearly"] = {
+    "ja-JP": "年",
+    "zh-TW": "年",
+    "en-US": "Yearly",
+    "zh-CN": "年",
+};
+
+data["monthly"] = {
+    "ja-JP": "月",
+    "zh-TW": "月",
+    "en-US": "Monthly",
+    "zh-CN": "月",
+};
+
+data["weekly"] = {
+    "ja-JP": "週",
+    "zh-TW": "週",
+    "en-US": "Weekly",
+    "zh-CN": "周",
+};
+
 data["attribute"] = {
     "ja-JP": "属性",
     "zh-TW": "屬性",

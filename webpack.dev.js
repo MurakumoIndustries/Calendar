@@ -12,9 +12,9 @@ module.exports = merge(common, {
         }
     },
     devtool: 'inline-source-map',
-    plugins: [
-        new BundleAnalyzerPlugin({
-            analyzerPort: 'auto'
-        })
-    ]
+    //plugins: [
+    //    new BundleAnalyzerPlugin({
+    //        analyzerPort: 'auto'
+    //    })
+    //]
 });

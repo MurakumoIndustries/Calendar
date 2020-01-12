@@ -10,18 +10,26 @@ var init = function () {
 
     page('/type/:type/date/:year?/:month?/:day?', function (ctx) {
         console.log("route:calendar", ctx);
-        Store.commit('setType', ctx.params.type);
-        Store.commit('setDate', ctx.params.year, ctx.params.month, ctx.params.day);
+        Store.commit('setType', { type: ctx.params.type });
+        Store.commit('setDate', {
+            year: ctx.params.year,
+            month: ctx.params.month,
+            day: ctx.params.day
+        });
         if (ctx.path != Store.getters.url) {
             page.redirect(Store.getters.url);
         }
     });
     page('/type/:type?', function (ctx) {
-        Store.commit('setType', ctx.params.type);
+        Store.commit('setType', { type: ctx.params.type });
         page.redirect(Store.getters.url);
     });
     page('/date/:year?/:month?/:day?', function (ctx) {
-        Store.commit('setDate', ctx.params.year, ctx.params.month, ctx.params.day);
+        Store.commit('setDate', {
+            year: ctx.params.year,
+            month: ctx.params.month,
+            day: ctx.params.day
+        });
         page.redirect(Store.getters.url);
     });
 

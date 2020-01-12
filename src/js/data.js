@@ -4,7 +4,7 @@ import serverList from "../data/serverList.json";
 const baseKey = "MI_Calendar_";
 const lastUpdateKey = baseKey + "LastUpdate";
 const serverKey = baseKey + "Server";
-const filelist = ['actress', 'exactress', 'chara', 'weapon', 'equipment', 'skillactive', 'skillpassive', 'skilldetail', 'costume', 'accessory', 'combo'];
+const filelist = ['calendar'];
 
 var data = {};
 
@@ -98,8 +98,21 @@ var getAll = function (type) {
     }
     return data[type.toLowerCase()];
 };
-var get = function (type, id) {
-    return _.find(getAll(type), function (o) { return o.id == id });
+
+var getByBirthDate = function (date) {
+    return _.find(getAll('calendar'), function (o) {
+        if (o.name == "アクトレス" || o.fullName == "アクトレス") {
+            return false;
+        }
+        if (o.birthday == "1/1") {
+            return false;
+        }
+        var birth = o.birthday.split('/');
+        if (birth.length != 2) {
+            return false;
+        }
+        return Number(birth[0]) === date.getMonth() + 1 && Number(birth[1]) === date.getDate();
+    });
 };
 
 const Data = {
@@ -108,7 +121,7 @@ const Data = {
     setCurrentServer,
     init,
     getAll,
-    get
+    getByBirthDate
 };
 
 export { Data };

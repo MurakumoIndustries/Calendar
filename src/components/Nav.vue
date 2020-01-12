@@ -29,17 +29,20 @@
                             <a
                                 :class="['btn','btn-light',{'active':calendarType==1}]"
                                 href="#!/type/1"
-                            >{{Ui.getText("year")}}</a>
+                            >{{Ui.getText("yearly")}}</a>
                             <a
                                 :class="['btn','btn-light',{'active':calendarType==2}]"
                                 href="#!/type/2"
-                            >{{Ui.getText("month")}}</a>
+                            >{{Ui.getText("monthly")}}</a>
                             <a
                                 :class="['btn','btn-light',{'active':calendarType==3}]"
                                 href="#!/type/3"
-                            >{{Ui.getText("week")}}</a>
+                            >{{Ui.getText("weekly")}}</a>
                         </div>
                     </form>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-light" :href="'#!'+$store.getters.today">{{Ui.getText("today")}}</a>
                 </li>
             </ul>
 
