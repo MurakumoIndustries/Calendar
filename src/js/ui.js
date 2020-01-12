@@ -20,12 +20,7 @@ var supportedLang = [{
 var currentLang = '';
 var data = [];
 //navbar
-data["search"] = { "ja-JP": "検索", "zh-TW": "搜尋", "en-US": "Search", "zh-CN": "查询" };
-data["clear"] = { "ja-JP": "", "zh-TW": "清空", "en-US": "Clear", "zh-CN": "清空" };
-
-data["default"] = { "ja-JP": "デフォルト", "zh-TW": "默認", "en-US": "Default", "zh-CN": "默认" };
-data["gojyuon"] = { "ja-JP": "五十音順", "zh-TW": "五十音順", "en-US": "Gojūon", "zh-CN": "五十音顺" };
-data["others"] = { "ja-JP": "その他", "zh-TW": "其他", "en-US": "Others", "zh-CN": "其他" };
+data["today"] = { "ja-JP": "今日", "zh-TW": "今日", "en-US": "Today", "zh-CN": "今天" };
 
 data["chara"] = { "ja-JP": "キャラ", "zh-TW": "角色", "en-US": "Character", "zh-CN": "角色" };
 data["originalchara"] = { "ja-JP": "オリジナル", "zh-TW": "原創", "en-US": "Original", "zh-CN": "原创" };
@@ -50,31 +45,13 @@ data["disablecachewarning"] = {
 };
 
 //resume
-data["resume"] = {
-    "ja-JP": "履歴書",
-    "zh-TW": "履歷表",
-    "en-US": "Resume",
-    "zh-CN": "履历表"
-};
-data["roma"] = {
-    "ja-JP": "ローマ字",
-    "zh-TW": "羅馬字",
-    "en-US": "Rōmaji",
-    "zh-CN": "罗马字"
-};
-data["ruby"] = {
-    "ja-JP": "ふりがな",
-    "zh-TW": "振假名",
-    "en-US": "Furigana",
-    "zh-CN": "注音假名",
-};
-data["name"] = {
-    "ja-JP": "名前",
-    "zh-TW": "姓名",
-    "en-US": "Name",
-    "zh-CN": "姓名",
-};
 data["birthday"] = {
+    "ja-JP": "誕生日",
+    "zh-TW": "生日",
+    "en-US": "Birthday",
+    "zh-CN": "生日",
+};
+data["birthdayResume"] = {
     "ja-JP": "誕生日",
     "zh-TW": "出生日期",
     "en-US": "Date of Birth",
@@ -116,59 +93,11 @@ data["job"] = {
     "en-US": "Job",
     "zh-CN": "职业",
 };
-data["hobby"] = {
-    "ja-JP": "趣味・特技",
-    "zh-TW": "興趣",
-    "en-US": "Hobbies & Skills",
-    "zh-CN": "特长爱好",
-};
-data["goal"] = {
-    "ja-JP": "将来の目標",
-    "zh-TW": "未來的目標",
-    "en-US": "Future Goal",
-    "zh-CN": "将来的目标",
-};
-data["reason"] = {
-    "ja-JP": "アクトレスを志した理由",
-    "zh-TW": "想當Actress的理由",
-    "en-US": "Reason for Application",
-    "zh-CN": "求职理由",
-};
-data["appeal"] = {
-    "ja-JP": "自己PR",
-    "zh-TW": "自我展現",
-    "en-US": "Personal Statement",
-    "zh-CN": "自我介绍",
-};
 data["cv"] = {
     "ja-JP": "CV",
     "zh-TW": "CV",
     "en-US": "Voice",
     "zh-CN": "CV",
-};
-data["count"] = {
-    "ja-JP": "回数",
-    "zh-TW": "次數",
-    "en-US": "Count",
-    "zh-CN": "次数",
-};
-data["needPoint"] = {
-    "ja-JP": "必要な結合粒子",
-    "zh-TW": "結合粒子需求量",
-    "en-US": "Particle Required",
-    "zh-CN": "结合粒子需求量",
-};
-data["duration"] = {
-    "ja-JP": "時間",
-    "zh-TW": "時間",
-    "en-US": "Duration",
-    "zh-CN": "时间",
-};
-data["geartype"] = {
-    "ja-JP": "ギア種別",
-    "zh-TW": "武裝種別",
-    "en-US": "Gear Type",
-    "zh-CN": "武装类型",
 };
 
 data["month"] = {

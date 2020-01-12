@@ -42,7 +42,10 @@
                     </form>
                 </li>
                 <li class="nav-item">
-                    <a class="btn btn-light" :href="'#!'+$store.getters.today">{{Ui.getText("today")}}</a>
+                    <a
+                        class="btn btn-light"
+                        :href="'#!'+$store.getters.today"
+                    >{{Ui.getText("today")}}</a>
                 </li>
             </ul>
 

@@ -31,7 +31,9 @@
                     v-for="j in 7"
                     :key="j"
                     class="col text-center date-num-container"
-                    :class="{'not-in-month':!isDateInMonth(i,j)}"
+                    :class="{'not-in-month':!isDateInMonth(i,j),
+                    'has-actress':isDateInMonth(i,j)&&hasActress(i,j)}"
+                    @click="isDateInMonth(i,j)&&openDetail(i,j)"
                 >
                     <span
                         :class="{
@@ -40,10 +42,10 @@
                     'is-sun':(j-1+firstDayOfWeek)%7==0,
                 }"
                     >{{getDateOfMonth(i,j)}}</span>
-                    <span v-if="actressList[i]&&actressList[i][j]" class="actress-icon">
+                    <span v-if="hasActress(i,j)" class="actress-icon">
                         <img :src="'../img/chara/' + actressList[i][j].miniIcon + '.png'" />
                     </span>
-                    <span v-if="actressList[i]&&actressList[i][j]" class="actress-label">
+                    <span v-if="hasActress(i,j)" class="actress-label">
                         {{actressList[i][j].fullName}}
                         <br />
                         {{Ui.getText('birthday')}}
@@ -57,6 +59,7 @@
 import { mapState } from "vuex";
 
 import { Data } from "../js/data.js";
+import { Event } from "../js/event.js";
 
 export default {
     data: function() {
@@ -128,6 +131,15 @@ export default {
                     this.actressList[i][j] = this.getActress(i, j);
                 }
             }
+        },
+        hasActress: function(row, col) {
+            return this.actressList[row] && this.actressList[row][col];
+        },
+        openDetail: function(row, col) {
+            if (!this.hasActress(row, col)) {
+                return;
+            }
+            Event.$emit("detail", this.actressList[row][col]);
         }
     },
     components: {}
@@ -150,6 +162,10 @@ export default {
 .date-num-container {
     position: relative;
     padding: 0 0 3rem 0;
+    user-select: none;
+}
+.date-num-container.has-actress {
+    cursor: pointer;
 }
 .date-num-container .date-num {
     position: absolute;
