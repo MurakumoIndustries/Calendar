@@ -39,7 +39,7 @@
                     class="col text-center date-num-container"
                     :class="{'not-in-month':!isDateInMonth(i,j),
                     'has-actress':isDateInMonth(i,j)&&hasActress(i,j)}"
-                    @click="isDateInMonth(i,j)&&openDetail(i,j)"
+                    @click="openDetail(i,j)"
                 >
                     <span
                         class="date-num"
@@ -49,10 +49,28 @@
                 }"
                     >{{getDateOfMonth(i,j)}}</span>
                     <span v-if="hasActress(i,j)" class="actress-icon">
-                        <img :src="'../img/chara/' + actressList[i][j].miniIcon + '.png'" />
+                        <img :src="'../img/chara/' + actressList[i][j][0].miniIcon + '.png'" />
                     </span>
                     <span v-if="hasActress(i,j)" class="actress-label">
-                        {{actressList[i][j].fullName}}
+                        {{actressList[i][j][0].fullName}}
+                        <br />
+                        {{Ui.getText('birthday')}}
+                    </span>
+                    <span
+                        v-if="hasActress(i,j)&&actressList[i][j].length==2"
+                        class="actress-icon"
+                        style="top:3rem;"
+                        @click.stop="openDetail(i,j,1)"
+                    >
+                        <img :src="'../img/chara/' + actressList[i][j][1].miniIcon + '.png'" />
+                    </span>
+                    <span
+                        v-if="hasActress(i,j)&&actressList[i][j].length==2"
+                        class="actress-label"
+                        style="top:3.25rem;"
+                        @click.stop="openDetail(i,j,1)"
+                    >
+                        {{actressList[i][j][1].fullName}}
                         <br />
                         {{Ui.getText('birthday')}}
                     </span>
@@ -142,7 +160,7 @@ export default {
         isDateInMonth: function(row, col) {
             return this.getDate(row, col).getMonth() + 1 == this.month;
         },
-        getActress: function(row, col) {
+        getActressList: function(row, col) {
             return Data.getByBirthDate(this.getDate(row, col));
         },
         updateActressList: function() {
@@ -150,18 +168,28 @@ export default {
             for (var i = 1; i <= this.rows; i++) {
                 this.actressList[i] = [];
                 for (var j = 1; j <= 7; j++) {
-                    this.actressList[i][j] = this.getActress(i, j);
+                    this.actressList[i][j] = this.getActressList(i, j);
                 }
             }
         },
         hasActress: function(row, col) {
-            return this.actressList[row] && this.actressList[row][col];
+            return (
+                this.actressList[row] &&
+                this.actressList[row][col] &&
+                this.actressList[row][col].length
+            );
         },
-        openDetail: function(row, col) {
+        openDetail: function(row, col, index) {
             if (!this.hasActress(row, col)) {
                 return;
             }
-            Event.$emit("detail", this.actressList[row][col]);
+            if (!this.isDateInMonth(row, col)) {
+                return;
+            }
+            if (!index) {
+                index = 0;
+            }
+            Event.$emit("detail", this.actressList[row][col][index]);
         }
     },
     components: {}

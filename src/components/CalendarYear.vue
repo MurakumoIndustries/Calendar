@@ -50,18 +50,51 @@
                             v-for="j in 7"
                             :key="j"
                             class="col text-center date-num-container"
-                            :class="{'not-in-month':!isDateInMonth(month,i,j),
-                    'has-actress':isDateInMonth(month,i,j)&&hasActress(month,i,j)}"
-                            @click="isDateInMonth(month,i,j)&&openDetail(month,i,j)"
+                            :class="{
+                                'not-in-month':!isDateInMonth(month,i,j),
+                                'has-actress':isDateInMonth(month,i,j)&&hasActress(month,i,j)
+                            }"
                         >
                             <div
                                 v-if="isDateInMonth(month,i,j)&&hasActress(month,i,j)"
                                 class="actress-icon"
-                                :title="getDateOfMonth(month,i,j)"
                             >
-                                <img
-                                    :src="'../img/chara/' + actressList[month][i][j].miniIcon + '.png'"
-                                />
+                                <div
+                                    v-if="actressList[month][i][j].length==1"
+                                    :style="{'background-color':actressList[month][i][j][0].imageColor}"
+                                    :title="getDateOfMonth(month,i,j)+' '+actressList[month][i][j][0].name"
+                                    @click="openDetail(month,i,j)"
+                                >
+                                    <img
+                                        :src="'../img/chara/' + actressList[month][i][j][0].miniIcon + '.png'"
+                                    />
+                                </div>
+                                <div
+                                    v-else-if="actressList[month][i][j].length==2"
+                                    class="actress-icon-2-icons"
+                                >
+                                    <div
+                                        class="icon-1"
+                                        :style="{'background-color':actressList[month][i][j][0].imageColor}"
+                                        :title="getDateOfMonth(month,i,j)+' '+actressList[month][i][j][0].name"
+                                        @click="openDetail(month,i,j,0)"
+                                    >
+                                        <img
+                                            :src="'../img/chara/' + actressList[month][i][j][0].miniIcon + '.png'"
+                                        />
+                                    </div>
+                                    <div
+                                        class="icon-2"
+                                        :style="{'background-color':actressList[month][i][j][1].imageColor}"
+                                        :title="getDateOfMonth(month,i,j)+' '+actressList[month][i][j][1].name"
+                                        @click="openDetail(month,i,j,1)"
+                                    >
+                                        <img
+                                            :src="'../img/chara/' + actressList[month][i][j][1].miniIcon + '.png'"
+                                        />
+                                    </div>
+                                </div>
+                                <div v-else>3 actress in same day?!</div>
                             </div>
                             <div
                                 v-else
@@ -159,7 +192,7 @@ export default {
         isDateInMonth: function(month, row, col) {
             return this.getDate(month, row, col).getMonth() + 1 == month;
         },
-        getActress: function(month, row, col) {
+        getActressList: function(month, row, col) {
             return Data.getByBirthDate(this.getDate(month, row, col));
         },
         updateActressList: function() {
@@ -169,7 +202,11 @@ export default {
                 for (var i = 1; i <= this.rows(m); i++) {
                     this.actressList[m][i] = [];
                     for (var j = 1; j <= 7; j++) {
-                        this.actressList[m][i][j] = this.getActress(m, i, j);
+                        this.actressList[m][i][j] = this.getActressList(
+                            m,
+                            i,
+                            j
+                        );
                     }
                 }
             }
@@ -178,14 +215,21 @@ export default {
             return (
                 this.actressList[month] &&
                 this.actressList[month][row] &&
-                this.actressList[month][row][col]
+                this.actressList[month][row][col] &&
+                this.actressList[month][row][col].length
             );
         },
-        openDetail: function(month, row, col) {
+        openDetail: function(month, row, col, index) {
             if (!this.hasActress(month, row, col)) {
                 return;
             }
-            Event.$emit("detail", this.actressList[month][row][col]);
+            if (!this.isDateInMonth(month, row, col)) {
+                return;
+            }
+            if (!index) {
+                index = 0;
+            }
+            Event.$emit("detail", this.actressList[month][row][col][index]);
         }
     },
     components: {}
@@ -233,10 +277,35 @@ export default {
 .is-sun {
     color: #ff0099;
 }
-.date-num-container .actress-icon {
-}
 .date-num-container .actress-icon img {
     width: 2rem;
+}
+.date-num-container .actress-icon .actress-icon-2-icons {
+    position: relative;
+}
+.date-num-container .actress-icon .actress-icon-2-icons > .icon-1 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    clip-path: polygon(0% 0%, 75% 0, 25% 100%, 0% 100%);
+    transition: clip-path 1s, z-index 1s step-end;
+}
+.date-num-container .actress-icon .actress-icon-2-icons > .icon-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    clip-path: polygon(75% 0%, 100% 0%, 100% 100%, 25% 100%);
+    transition: clip-path 1s, z-index 1s step-end;
+}
+.date-num-container .actress-icon .actress-icon-2-icons > .icon-1:hover,
+.date-num-container .actress-icon .actress-icon-2-icons > .icon-2:hover {
+    z-index: 2;
+    clip-path: polygon(0% 0%, 100% 0, 100% 100%, 0% 100%);
+    transition: clip-path 1s, z-index 1s step-start;
 }
 </style>
 

@@ -100,7 +100,7 @@ var getAll = function (type) {
 };
 
 var getByBirthDate = function (date) {
-    return _.find(getAll('calendar'), function (o) {
+    return _.filter(getAll('calendar'), function (o) {
         if (o.name == "アクトレス" || o.fullName == "アクトレス") {
             return false;
         }
