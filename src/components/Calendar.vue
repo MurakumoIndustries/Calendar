@@ -15,15 +15,19 @@ import CalendarMonth from "./CalendarMonth.vue";
 import Detail from "./Detail.vue";
 
 import { Event } from "../js/event.js";
+import { iCalendar } from "../js/iCalendar.js";
 
 export default {
     data: function() {
         return {};
     },
     mounted: function() {
-        var $vm = this;
-
-        Event.$on("export-image", function(width, height) {
+        Event.$on("export-image", this.exportImage);
+        Event.$on("export-ical", this.exportICal);
+    },
+    methods: {
+        exportImage: function(width, height) {
+            var $vm = this;
             html2canvas($vm.$el, {
                 width: width,
                 height: height,
@@ -48,7 +52,13 @@ export default {
                     saveAs(blob, "calendar.png");
                 });
             });
-        });
+        },
+        exportICal: function() {
+            var year = this.$store.state.year;
+            var ical = iCalendar.generate(year);
+            var blob = new Blob([ical], { type: "text/plain;charset=utf-8" });
+            saveAs(blob, year + "_" + this.Ui.getLang() + ".ics");
+        }
     },
     computed: {
         calendarType: function() {

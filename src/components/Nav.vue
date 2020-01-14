@@ -144,11 +144,21 @@
                                 />
                             </div>
                             <button
-                                class="btn btn-outline-primary mt-2 float-right"
+                                class="btn btn-outline-primary my-2 pr-2 float-right text-nowrap"
                                 type="button"
                                 @click="exportImage()"
-                            >{{Ui.getText("export")}}</button>
+                            >
+                                <span>{{Ui.getText("exportimg")}}</span>
+                                <i class="material-icons text-black-50">save_alt</i>
+                            </button>
                         </div>
+                        <a class="dropdown-item" href="#" @click.prevent="exportICal()">
+                            <span class="mr-4">{{Ui.getText("exportical")}}</span>
+                            <i
+                                class="material-icons text-black-50"
+                                style="position:absolute;right:1rem;"
+                            >save_alt</i>
+                        </a>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -232,6 +242,9 @@ export default {
         },
         exportImage: function() {
             Event.$emit("export-image", this.windowWidth, this.windowHeight);
+        },
+        exportICal: function() {
+            Event.$emit("export-ical");
         }
     },
     computed: {

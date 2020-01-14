@@ -21,7 +21,8 @@ var currentLang = '';
 var data = [];
 //navbar
 data["today"] = { "ja-JP": "今日", "zh-TW": "今日", "en-US": "Today", "zh-CN": "今天" };
-data["export"] = { "ja-JP": "エクスポート", "zh-TW": "匯出", "en-US": "Export", "zh-CN": "导出" };
+data["exportimg"] = { "ja-JP": "画像のエクスポート", "zh-TW": "匯出圖像", "en-US": "Export Image", "zh-CN": "导出图片" };
+data["exportical"] = { "ja-JP": "iCalカレンダー", "zh-TW": "iCal行事曆", "en-US": "iCal Calendars", "zh-CN": "iCal日历" };
 
 data["chara"] = { "ja-JP": "キャラ", "zh-TW": "角色", "en-US": "Character", "zh-CN": "角色" };
 data["originalchara"] = { "ja-JP": "オリジナル", "zh-TW": "原創", "en-US": "Original", "zh-CN": "原创" };
@@ -135,6 +136,14 @@ data["weekly"] = {
     "zh-TW": "週",
     "en-US": "Weekly",
     "zh-CN": "周",
+};
+
+//ical
+data["todayisbirthday"] = {
+    "ja-JP": "今日は「$1」の誕生日！",
+    "zh-TW": "今天是「$1」的生日！",
+    "en-US": "Today is $2($1)'s birthday!",
+    "zh-CN": "今天是「$1」的生日！",
 };
 
 

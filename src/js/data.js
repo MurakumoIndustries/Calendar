@@ -108,7 +108,7 @@ var getByBirthDate = function (date) {
             return false;
         }
         var birth = o.birthday.split('/');
-        if (birth.length != 2) {
+        if (birth.length != 2 || isNaN(Number(birth[0])) || isNaN(Number(birth[1]))) {
             return false;
         }
         return Number(birth[0]) === date.getMonth() + 1 && Number(birth[1]) === date.getDate();
