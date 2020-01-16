@@ -34,10 +34,6 @@
                                 :class="['btn','btn-light',{'active':calendarType==2}]"
                                 href="#!/type/2"
                             >{{Ui.getText("monthly")}}</a>
-                            <a
-                                :class="['btn','btn-light',{'active':calendarType==3}]"
-                                href="#!/type/3"
-                            >{{Ui.getText("weekly")}}</a>
                         </div>
                     </form>
                 </li>
