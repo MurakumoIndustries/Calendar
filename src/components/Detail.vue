@@ -15,7 +15,11 @@
                     <div class="col">
                         <div class="actress-resume-singleline">
                             <div class="row justify-content-center">
-                                <h1 class="m-0 pb-4 text-nowrap">
+                                <p
+                                    class="actress-name"
+                                    :class="{'actress-name-long':actress.fullName.length>7,
+                                    'actress-name-foreigner':actress.ruby==actress.roma}"
+                                >
                                     <ruby v-if="isNeedSplit">
                                         {{SplitedName[0]}}
                                         <rp>(</rp>
@@ -61,7 +65,7 @@
                                         </rt>
                                         <rp>)</rp>
                                     </ruby>
-                                </h1>
+                                </p>
                             </div>
                             <div class="row">
                                 <div class="col-4 col-lg-2">{{Ui.getText("birthdayResume")}}</div>
@@ -88,12 +92,11 @@
                         </div>
                     </div>
                 </div>
-                <button
-                    type="button"
-                    class="close"
-                    data-dismiss="modal"
-                    aria-label="Close"
-                >
+                <div
+                    class="actress-collabo text-black-50"
+                    v-if="actress.isCollabo"
+                >{{Ui.getText('collabochara')}}</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -154,6 +157,26 @@ export default {
 <style lang="scss" scoped>
 @import "~bootstrap/scss/bootstrap";
 
+.actress-name {
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin: 0;
+    padding: 1rem 0 1rem 0;
+    white-space: nowrap;
+}
+.actress-name-foreigner {
+    padding-top: 0;
+}
+
+@include media-breakpoint-down(md) {
+    .actress-name {
+        padding-bottom: 0;
+    }
+    .actress-name-long {
+        font-size: 2rem;
+    }
+}
+
 .actress-resume-singleline {
     height: 100%;
     display: flex;
@@ -163,9 +186,9 @@ export default {
     padding-right: 2rem;
 }
 
-@include media-breakpoint-down(lg) {
+@include media-breakpoint-down(md) {
     .actress-resume-singleline {
-        padding: 2rem 1rem 0 1rem;
+        padding: 1rem 1rem 0.5rem 1rem;
     }
 }
 
@@ -182,6 +205,21 @@ export default {
 }
 .chara-img-container > img {
     border-radius: 10px;
+}
+
+.actress-collabo {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 0.5rem;
+}
+@include media-breakpoint-down(md) {
+    .actress-collabo {
+        left: 0;
+        top: 0;
+        right: unset;
+        bottom: unset;
+    }
 }
 
 .close {
