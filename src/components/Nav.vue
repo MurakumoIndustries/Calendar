@@ -23,7 +23,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
+                <li class="nav-item mr-2">
                     <form class="form-inline">
                         <div class="btn-group">
                             <a
@@ -37,7 +37,7 @@
                         </div>
                     </form>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item mr-2">
                     <a
                         class="btn btn-light"
                         :href="'#!'+$store.getters.today"
