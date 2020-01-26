@@ -155,7 +155,9 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-@import "~bootstrap/scss/bootstrap";
+@import "~bootstrap/scss/functions";
+@import "~bootstrap/scss/variables";
+@import "~bootstrap/scss/mixins";
 
 .actress-name {
     font-size: 2.5rem;
