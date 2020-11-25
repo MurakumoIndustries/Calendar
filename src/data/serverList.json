@@ -2,8 +2,8 @@
     "pyramid": {
         "id": "pyramid",
         "name": "Pyramid",
-        "folder": "pyramiyad",
-        "version": "24911",
+        "folder": "pyramid",
+        "version": "25008",
         "isDefault": true
     },
     "sonet": {
