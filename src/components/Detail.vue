@@ -109,7 +109,7 @@ import { Event } from "../js/event.js";
 import $ from "jquery";
 import page from "page";
 
-var splitRegex = /[‧|・|\s]/g;
+var splitRegex = /[.|‧|・|\s]/g;
 
 export default {
     data: function() {
