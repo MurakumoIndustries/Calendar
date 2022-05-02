@@ -1,65 +1,60 @@
 <template>
     <div class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content background">
+            <div class="modal-content background actress-resume-container">
                 <div class="row">
                     <div class="col-12 col-lg-auto text-center">
                         <div class="chara-img-container">
-                            <a target="_blank" :href="'/Actress/#!/actress/'+actress.actressId">
-                                <img
-                                    v-bind:src="actress.image&&('../img/chara/' + actress.image + '.png')"
-                                />
+                            <a target="_blank" :href="'/Actress/#!/actress/' + actress.actressId">
+                                <img v-bind:src="actress.image && ('../img/chara/' + actress.image + '.png')" />
                             </a>
                         </div>
                     </div>
                     <div class="col">
                         <div class="actress-resume-singleline">
                             <div class="row justify-content-center">
-                                <p
-                                    class="actress-name"
-                                    :class="{'actress-name-long':actress.fullName.length>7,
-                                    'actress-name-foreigner':actress.ruby==actress.roma}"
-                                >
+                                <p class="actress-name" :class="{
+                                    'actress-name-long': actress.fullName.length > 7,
+                                    'actress-name-long-x2': actress.fullName.length > 14,
+                                    'actress-name-foreigner': actress.ruby == actress.roma
+                                }">
                                     <ruby v-if="isNeedSplit">
-                                        {{SplitedName[0]}}
+                                        {{ SplitedName[0] }}
                                         <rp>(</rp>
-                                        <rt v-if="SplitedRuby[0]==SplitedRoma[0]">{{SplitedRuby[0]}}</rt>
+                                        <rt v-if="SplitedRuby[0] == SplitedRoma[0]">{{ SplitedRuby[0] }}</rt>
                                         <rt v-else>
                                             <ruby>
-                                                {{SplitedRuby[0]}}
+                                                {{ SplitedRuby[0] }}
                                                 <rp>(</rp>
-                                                <rt>{{SplitedRoma[0]}}</rt>
+                                                <rt>{{ SplitedRoma[0] }}</rt>
                                                 <rp>)</rp>
                                             </ruby>
                                         </rt>
                                         <rp>)</rp>
                                     </ruby>
-                                    <span
-                                        v-if="isNeedSplit"
-                                        :class="{'pr-1':!SplitMark}"
-                                    >{{SplitMark}}</span>
+                                    <span v-if="isNeedSplit" :class="{ 'pr-1': !SplitMark }">{{ SplitMark }}</span>
                                     <ruby v-if="isNeedSplit">
-                                        {{SplitedName[1]}}
+                                        {{ SplitedName[1] }}
                                         <rp>(</rp>
-                                        <rt v-if="SplitedRuby[1]==SplitedRoma[1]">{{SplitedRuby[1]}}</rt>
+                                        <rt v-if="SplitedRuby[1] == SplitedRoma[1]">{{ SplitedRuby[1] }}</rt>
                                         <rt v-else>
                                             <ruby>
-                                                {{SplitedRuby[1]}}
+                                                {{ SplitedRuby[1] }}
                                                 <rp>(</rp>
-                                                <rt>{{SplitedRoma[1]}}</rt>
+                                                <rt>{{ SplitedRoma[1] }}</rt>
                                                 <rp>)</rp>
                                             </ruby>
                                         </rt>
                                         <rp>)</rp>
                                     </ruby>
                                     <ruby v-else>
-                                        {{actress.fullName}}
+                                        {{ actress.fullName }}
                                         <rp>(</rp>
                                         <rt>
                                             <ruby>
-                                                {{actress.ruby}}
+                                                {{ actress.ruby }}
                                                 <rp>(</rp>
-                                                <rt>{{actress.roma}}</rt>
+                                                <rt>{{ actress.roma }}</rt>
                                                 <rp>)</rp>
                                             </ruby>
                                         </rt>
@@ -68,34 +63,31 @@
                                 </p>
                             </div>
                             <div class="row">
-                                <div class="col-4 col-lg-2">{{Ui.getText("birthdayResume")}}</div>
-                                <div class="col-8 col-lg-2 text-right">{{actress.birthday}}</div>
-                                <div class="col-4 col-lg-2">{{Ui.getText("age")}}</div>
-                                <div class="col-8 col-lg-2 text-right">{{actress.age}}</div>
-                                <div
-                                    class="col-4 col-lg-2"
-                                    :title="Ui.getText('modelheight')+':'+actress.modelHeight"
-                                >{{Ui.getText("height")}}</div>
+                                <div class="col-4 col-lg-2">{{ Ui.getText("birthdayResume") }}</div>
+                                <div class="col-8 col-lg-2 text-right">{{ actress.birthday }}</div>
+                                <div class="col-4 col-lg-2">{{ Ui.getText("age") }}</div>
+                                <div class="col-8 col-lg-2 text-right">{{ actress.age }}</div>
+                                <div class="col-4 col-lg-2"
+                                    :title="Ui.getText('modelheight') + ':' + actress.modelHeight">
+                                    {{ Ui.getText("height") }}</div>
                                 <div class="col-8 col-lg-2 text-right">
-                                    {{actress.resumeHeight}}
-                                    {{Ui.getText('heightunit')}}
+                                    {{ actress.resumeHeight }}
+                                    {{ Ui.getText('heightunit') }}
                                 </div>
-                                <div class="col-4 col-lg-2">{{Ui.getText("blood")}}</div>
-                                <div class="col-8 col-lg-2 text-right">{{actress.blood}}</div>
-                                <div class="col-4 col-lg-2">{{Ui.getText("job")}}</div>
-                                <div class="col-8 col-lg-6 text-right">{{actress.job}}</div>
+                                <div class="col-4 col-lg-2">{{ Ui.getText("blood") }}</div>
+                                <div class="col-8 col-lg-2 text-right">{{ actress.blood }}</div>
+                                <div class="col-4 col-lg-2">{{ Ui.getText("job") }}</div>
+                                <div class="col-8 col-lg-6 text-right">{{ actress.job }}</div>
                             </div>
-                            <div class="row">
-                                <div class="col-auto">{{Ui.getText("cv")}}</div>
-                                <div class="col text-right">{{actress.cv}}</div>
+                            <div class="row mt-3">
+                                <div class="col-auto">{{ Ui.getText("cv") }}</div>
+                                <div class="col text-right">{{ actress.cv }}</div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div
-                    class="actress-collabo text-black-50"
-                    v-if="actress.isCollabo"
-                >{{Ui.getText('collabochara')}}</div>
+                <div class="actress-collabo text-black-50" v-if="actress.isCollabo">{{ Ui.getText('collabochara') }}
+                </div>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -112,15 +104,15 @@ import page from "page";
 var splitRegex = /[.|‧|・|\s]/g;
 
 export default {
-    data: function() {
+    data: function () {
         return {
             actress: {}
         };
     },
-    created: function() {
+    created: function () {
         var $vm = this;
 
-        Event.$on("detail", function(actress) {
+        Event.$on("detail", function (actress) {
             var isModelShow = !!($vm.actress && $vm.actress.id);
             $vm.actress = actress || {};
             if (!$vm.actress || !$vm.actress.id) {
@@ -130,25 +122,25 @@ export default {
                 return;
             }
 
-            $vm.$nextTick(function() {
+            $vm.$nextTick(function () {
                 $($vm.$el).modal("show");
             });
         });
     },
     computed: {
-        isNeedSplit: function() {
+        isNeedSplit: function () {
             return splitRegex.test(this.actress.fullName);
         },
-        SplitedName: function() {
+        SplitedName: function () {
             return this.actress.fullName.split(splitRegex);
         },
-        SplitedRuby: function() {
+        SplitedRuby: function () {
             return this.actress.ruby.split(splitRegex);
         },
-        SplitedRoma: function() {
+        SplitedRoma: function () {
             return this.actress.roma.split(splitRegex);
         },
-        SplitMark: function() {
+        SplitMark: function () {
             return this.actress.fullName.match(splitRegex)[0].trim();
         }
     }
@@ -159,6 +151,17 @@ export default {
 @import "~bootstrap/scss/variables";
 @import "~bootstrap/scss/mixins";
 
+
+.actress-resume-container {
+    border-top-right-radius: 0;
+}
+
+@include media-breakpoint-up(lg) {
+    .actress-resume-container {
+        border-radius: 1rem 0 1rem 0;
+    }
+}
+
 .actress-name {
     font-size: 2.5rem;
     font-weight: 500;
@@ -166,6 +169,11 @@ export default {
     padding: 1rem 0 1rem 0;
     white-space: nowrap;
 }
+
+.actress-name-long-x2 {
+    font-size: 2.25rem;
+}
+
 .actress-name-foreigner {
     padding-top: 0;
 }
@@ -174,6 +182,7 @@ export default {
     .actress-name {
         padding-bottom: 0;
     }
+
     .actress-name-long {
         font-size: 2rem;
     }
@@ -205,7 +214,8 @@ export default {
     min-height: 360px;
     box-sizing: content-box;
 }
-.chara-img-container > img {
+
+.chara-img-container>img {
     border-radius: 10px;
 }
 
@@ -215,6 +225,7 @@ export default {
     bottom: 0;
     padding: 0.5rem;
 }
+
 @include media-breakpoint-down(md) {
     .actress-collabo {
         left: 0;
