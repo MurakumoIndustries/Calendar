@@ -1,18 +1,18 @@
-<template>
-    <div class="h-100">
-        <Nav />
-        <Calendar />
-    </div>
-</template>
+<script setup>
+import { ref, watchEffect } from 'vue';
+import { useStore } from './js/store'
 
-<script>
-import Nav from "./components/Nav.vue";
-import Calendar from "./components/Calendar.vue";
+import Nav from './components/Nav.vue'
+import Calendar from './components/Calendar.vue';
 
-export default {
-    components: {
-        Nav,
-        Calendar
-    }
-};
+const store = useStore();
+
+watchEffect(() => document.getElementsByTagName('body')[0].setAttribute('lang', store.language));
 </script>
+
+<template>
+  <div class="h-100">
+    <Nav />
+    <Calendar />
+  </div>
+</template>

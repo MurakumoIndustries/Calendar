@@ -168,45 +168,26 @@ var getText = function (key, key2) {
     }
     return data[key][key2][getLang()] || data[key][key2]['en-US'];
 };
+var getLangText = function (key) {
+    var lang = supportedLang.find(function (o) {
+        return o.key == key;
+    });
+    return (lang || {}).text;
+};
 var getLang = function () {
     if (!currentLang) {
-        setLang();
+        initLanguage();
     }
     return currentLang;
 };
-var getLangText = function () {
-    if (!currentLang) {
-        setLang();
-    }
-    return _.find(supportedLang, function (o) {
-        return o.key == currentLang;
-    }).text;
-};
-var setLang = function (lang) {
-    lang = lang || localStorage["uilang"] || navigator.language || navigator.browserLanguage;
-    if (_.some(supportedLang, function (o) { return o.key == lang }) == false) {
+var initLanguage = function (lang) {
+    lang = lang || localStorage["language"] || navigator.language || navigator.browserLanguage;
+    if (supportedLang.some(function (o) { return o.key == lang }) == false) {
         lang = 'ja-JP';
     }
     currentLang = lang;
-    localStorage["uilang"] = lang;
-};
-var renderAttrText = function (textList) {
-    var text = "";
-    var attrList = ["normal", "thunder", "gravity", "fire", "ice",
-        "light", "collapse", "theory", "nothing"
-    ];
-    _.each(textList, function (o, i) {
-        if (o !== undefined && o !== 0) {
-            text += '<span class="attr-text attr-' + attrList[i] + '">' + o + '</span>';
-        }
-    });
-    return text;
-};
-var renderAttribute2nd = function (attribute2nd) {
-    var text = getText("attribute", attribute2nd);
-    var attrText = [];
-    attrText[attribute2nd - 4] = text;
-    return renderAttrText(attrText);
+    localStorage["language"] = lang;
+    return lang;
 };
 var renderDesc = function (text) {
     if (!text) {
@@ -220,10 +201,8 @@ const Ui = {
     getText,
     getLang,
     getLangText,
-    setLang,
-    renderAttrText,
-    renderAttribute2nd,
-    renderDesc,
+    initLanguage,
+    renderDesc
 };
 
 export { Ui };

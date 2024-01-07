@@ -1,36 +1,30 @@
-import _ from 'lodash';
 import page from 'page';
-import Ui from './ui.js';
-import { Data } from './data.js'
 import NProgress from 'nprogress'
-import { Store } from './store.js'
 
-var init = function () {
+import { Ui } from './ui'
+import { Data } from './data'
+import { useStore } from './store';
+
+function initRouter() {
+    const store = useStore();
+
     page.base('/Calendar/');
 
     page('/type/:type/date/:year?/:month?/:day?', function (ctx) {
         console.log("route:calendar", ctx);
-        Store.commit('setType', { type: ctx.params.type });
-        Store.commit('setDate', {
-            year: ctx.params.year,
-            month: ctx.params.month,
-            day: ctx.params.day
-        });
-        if (ctx.path != Store.getters.url) {
-            page.redirect(Store.getters.url);
+        store.setCalendarType(ctx.params.type);
+        store.setDate(ctx.params.year, ctx.params.month, ctx.params.day);
+        if (ctx.path != store.url) {
+            page.redirect(store.url);
         }
     });
     page('/type/:type?', function (ctx) {
-        Store.commit('setType', { type: ctx.params.type });
-        page.redirect(Store.getters.url);
+        store.setCalendarType(ctx.params.type);
+        page.redirect(store.url);
     });
     page('/date/:year?/:month?/:day?', function (ctx) {
-        Store.commit('setDate', {
-            year: ctx.params.year,
-            month: ctx.params.month,
-            day: ctx.params.day
-        });
-        page.redirect(Store.getters.url);
+        store.setDate(ctx.params.year, ctx.params.month, ctx.params.day);
+        page.redirect(store.url);
     });
 
     //todo export
@@ -43,11 +37,16 @@ var init = function () {
 
 
 
-    var langPage = function (ctx) {
-        console.log("route:lang", ctx);
-        Ui.setLang(ctx.params.lang);
+
+    const langPage = function (ctx) {
+        console.log("route:langRoute", ctx);
+        Ui.initLanguage(ctx.params.lang);
         page.redirect('/');
     };
+    page('lang/:lang', langPage);
+    page.exit('lang/:lang', function () {
+        location.reload();
+    });
     page('/lang/:lang', langPage);
     page.exit('/lang/:lang', function () {
         location.reload();
@@ -82,7 +81,7 @@ var init = function () {
 
     page('/', function () {
         console.log("route:homeRoute");
-        page.redirect(Store.getters.url);
+        page.redirect(store.url);
     });
 
     page('*', function (ctx) {
@@ -90,7 +89,6 @@ var init = function () {
         page.redirect('/');
     });
     page.start({ hashbang: true });
-};
+}
 
-export { init };
-export default { init };
+export { initRouter };

@@ -1,9 +1,11 @@
+import _ from 'lodash';
 import localForage from "localforage";
 import serverList from "../data/serverList.json";
 
 const baseKey = "MI_Calendar_";
 const lastUpdateKey = baseKey + "LastUpdate";
 const serverKey = baseKey + "Server";
+const cacheDisableKey = baseKey + "Disable_Cache";
 const filelist = ['calendar'];
 
 var data = {};
@@ -59,8 +61,8 @@ var init = function (forceInit) {
                     import(
                         /* webpackChunkName: "jsondata" */
                         '../data/' + folder + '/' + o + '.json').then(jsondata => {
-                        return savedata(o, folder, jsondata.default);
-                    }));
+                            return savedata(o, folder, jsondata.default);
+                        }));
             });
             return Promise.all(promises).then(() => {
                 return store.setItem(lastUpdateKey, lastUpdate)
@@ -98,6 +100,9 @@ var getAll = function (type) {
     }
     return data[type.toLowerCase()];
 };
+var get = function (type, id) {
+    return _.find(getAll(type), function (o) { return o.id == id });
+};
 
 var getByBirthDate = function (date) {
     return _.filter(getAll('calendar'), function (o) {
@@ -121,7 +126,11 @@ const Data = {
     setCurrentServer,
     init,
     getAll,
-    getByBirthDate
+    get,
+    getByBirthDate,
+    const: {
+        cacheDisableKey
+    }
 };
 
 export { Data };

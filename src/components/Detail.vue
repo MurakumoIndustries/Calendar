@@ -6,7 +6,7 @@
                     <div class="col-12 col-lg-auto text-center">
                         <div class="chara-img-container">
                             <a target="_blank" :href="'/Actress/#!/actress/' + actress.actressId">
-                                <img v-bind:src="actress.image && ('../img/chara/' + actress.image + '.png')" />
+                                <img v-bind:src="actress.image && ('../assets/img/chara/' + actress.image + '.png')" />
                             </a>
                         </div>
                     </div>
@@ -14,8 +14,8 @@
                         <div class="actress-resume-singleline">
                             <div class="row justify-content-center">
                                 <p class="actress-name" :class="{
-                                    'actress-name-long': actress.fullName.length > 7,
-                                    'actress-name-long-x2': actress.fullName.length > 14,
+                                    'actress-name-long': actress.fullName && actress.fullName.length > 7,
+                                    'actress-name-long-x2': actress.fullName && actress.fullName.length > 14,
                                     'actress-name-foreigner': actress.ruby == actress.roma
                                 }">
                                     <ruby v-if="isNeedSplit">
@@ -32,7 +32,7 @@
                                         </rt>
                                         <rp>)</rp>
                                     </ruby>
-                                    <span v-if="isNeedSplit" :class="{ 'pr-1': !SplitMark }">{{ SplitMark }}</span>
+                                    <span v-if="isNeedSplit" :class="{ 'pe-1': !SplitMark }">{{ SplitMark }}</span>
                                     <ruby v-if="isNeedSplit">
                                         {{ SplitedName[1] }}
                                         <rp>(</rp>
@@ -67,8 +67,7 @@
                                 <div class="col-8 col-lg-2 text-right">{{ actress.birthday }}</div>
                                 <div class="col-4 col-lg-2">{{ Ui.getText("age") }}</div>
                                 <div class="col-8 col-lg-2 text-right">{{ actress.age }}</div>
-                                <div class="col-4 col-lg-2"
-                                    :title="Ui.getText('modelheight') + ':' + actress.modelHeight">
+                                <div class="col-4 col-lg-2" :title="Ui.getText('modelheight') + ':' + actress.modelHeight">
                                     {{ Ui.getText("height") }}</div>
                                 <div class="col-8 col-lg-2 text-right">
                                     {{ actress.resumeHeight }}
@@ -88,8 +87,7 @@
                 </div>
                 <div class="actress-collabo text-black-50" v-if="actress.isCollabo">{{ Ui.getText('collabochara') }}
                 </div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+                <button type="button" class="close btn-close" data-bs-dismiss="modal" aria-label="Close">
                 </button>
             </div>
         </div>
@@ -97,37 +95,48 @@
 </template>
 <script>
 import { Data } from "../js/data.js";
-import { Event } from "../js/event.js";
-import $ from "jquery";
-import page from "page";
+import { Modal } from "bootstrap";
+import { mapActions } from "pinia";
+import { useStore } from '../js/store';
 
-var splitRegex = /[.|‧|・|\s]/g;
+const splitRegex = /[.|‧|・|\s]/g;
 
 export default {
-    data: function () {
-        return {
-            actress: {}
-        };
+    props: {
+        actressId: undefined
     },
     created: function () {
         var $vm = this;
-
-        Event.$on("detail", function (actress) {
-            var isModelShow = !!($vm.actress && $vm.actress.id);
-            $vm.actress = actress || {};
-            if (!$vm.actress || !$vm.actress.id) {
-                if (isModelShow) {
-                    $($vm.$el).modal("hide");
-                }
-                return;
-            }
-
-            $vm.$nextTick(function () {
-                $($vm.$el).modal("show");
+        $vm.$nextTick(function () {
+            $vm.$el.addEventListener('hidden.bs.modal', function (e) {
+                $vm.resetCurrentActress();
             });
         });
     },
+    mounted: function () {
+        if (!(this.actressId)) {
+            const modal = Modal.getInstance(this.$el);
+            modal && modal.hide();
+            return;
+        }
+    },
+    watch: {
+        actressId: function (newId, oldId) {
+            if (!newId) {
+                const modal = Modal.getInstance(this.$el);
+                modal && modal.hide();
+                return;
+            }
+            this.$nextTick(function () {
+                const modal = Modal.getOrCreateInstance(this.$el);
+                modal && modal.show();
+            });
+        }
+    },
     computed: {
+        actress: function () {
+            return Data.get("calendar", this.actressId) || {};
+        },
         isNeedSplit: function () {
             return splitRegex.test(this.actress.fullName);
         },
@@ -143,13 +152,16 @@ export default {
         SplitMark: function () {
             return this.actress.fullName.match(splitRegex)[0].trim();
         }
+    },
+    methods: {
+        ...mapActions(useStore, ['resetCurrentActress']),
     }
 };
 </script>
 <style lang="scss" scoped>
-@import "~bootstrap/scss/functions";
-@import "~bootstrap/scss/variables";
-@import "~bootstrap/scss/mixins";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/mixins";
 
 
 .actress-resume-container {
@@ -241,7 +253,7 @@ export default {
     top: 0;
     width: 2.5rem;
     height: 2.5rem;
-    background: #ddd;
+    background-color: #ddd;
 }
 </style>
 
