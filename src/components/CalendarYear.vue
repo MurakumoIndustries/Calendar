@@ -41,7 +41,7 @@
                                     :style="{ 'background-color': actressList[month][i][j][0].imageColor }"
                                     :title="getDateOfMonth(month, i, j) + ' ' + actressList[month][i][j][0].name"
                                     @click="openDetail(month, i, j)">
-                                    <img :src="'../assets/img/chara/' + actressList[month][i][j][0].miniIcon + '.png'" />
+                                    <img :src="'/img/chara/' + actressList[month][i][j][0].miniIcon + '.png'" />
                                 </div>
                                 <div v-else-if="actressList[month][i][j].length == 2" class="actress-icon-2-icons">
                                     <div class="icon-1"
@@ -49,14 +49,14 @@
                                         :title="getDateOfMonth(month, i, j) + ' ' + actressList[month][i][j][0].name"
                                         @click="openDetail(month, i, j, 0)">
                                         <img
-                                            :src="'../assets/img/chara/' + actressList[month][i][j][0].miniIcon + '.png'" />
+                                            :src="'/img/chara/' + actressList[month][i][j][0].miniIcon + '.png'" />
                                     </div>
                                     <div class="icon-2"
                                         :style="{ 'background-color': actressList[month][i][j][1].imageColor }"
                                         :title="getDateOfMonth(month, i, j) + ' ' + actressList[month][i][j][1].name"
                                         @click="openDetail(month, i, j, 1)">
                                         <img
-                                            :src="'../assets/img/chara/' + actressList[month][i][j][1].miniIcon + '.png'" />
+                                            :src="'/img/chara/' + actressList[month][i][j][1].miniIcon + '.png'" />
                                     </div>
                                 </div>
                                 <div v-else>3 actress in same day?!</div>

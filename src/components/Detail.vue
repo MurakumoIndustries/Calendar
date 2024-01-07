@@ -6,7 +6,7 @@
                     <div class="col-12 col-lg-auto text-center">
                         <div class="chara-img-container">
                             <a target="_blank" :href="'/Actress/#!/actress/' + actress.actressId">
-                                <img v-bind:src="actress.image && ('../assets/img/chara/' + actress.image + '.png')" />
+                                <img v-bind:src="actress.image && ('/img/chara/' + actress.image + '.png')" />
                             </a>
                         </div>
                     </div>

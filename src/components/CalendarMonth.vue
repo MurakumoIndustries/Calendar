@@ -35,7 +35,7 @@
                         'is-sun': (j - 1 + firstDayOfWeek) % 7 == 0,
                     }">{{ getDateOfMonth(i, j) }}</span>
                     <span v-if="hasActress(i, j)" class="actress-icon">
-                        <img :src="'../assets/img/chara/' + actressList[i][j][0].miniIcon + '.png'" />
+                        <img :src="'/img/chara/' + actressList[i][j][0].miniIcon + '.png'" />
                     </span>
                     <span v-if="hasActress(i, j)" class="actress-label">
                         {{ actressList[i][j][0].fullName }}
@@ -44,7 +44,7 @@
                     </span>
                     <span v-if="hasActress(i, j) && actressList[i][j].length == 2" class="actress-icon" style="top:3rem;"
                         @click.stop="openDetail(i, j, 1)">
-                        <img :src="'../assets/img/chara/' + actressList[i][j][1].miniIcon + '.png'" />
+                        <img :src="'/img/chara/' + actressList[i][j][1].miniIcon + '.png'" />
                     </span>
                     <span v-if="hasActress(i, j) && actressList[i][j].length == 2" class="actress-label"
                         style="top:3.25rem;" @click.stop="openDetail(i, j, 1)">
