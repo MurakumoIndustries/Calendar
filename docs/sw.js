@@ -1270,7 +1270,7 @@ class re extends K {
 H({
   prefix: "MI_Calendar"
 });
-ae([{"revision":null,"url":"assets/calendar-2TCBIt9P.js"},{"revision":null,"url":"assets/calendar-J7mWU-Ms.js"},{"revision":null,"url":"assets/calendar-RCPTS3RH.js"},{"revision":null,"url":"assets/index-ahZNqDCJ.css"},{"revision":null,"url":"assets/index-enODVJqQ.js"},{"revision":null,"url":"assets/lastUpdate-aV-c0qWe.js"},{"revision":null,"url":"assets/lastUpdate-ixDICNlU.js"},{"revision":null,"url":"assets/lastUpdate-TzYInxk0.js"},{"revision":"9ec5ab1d592bbaeb04cac92ee162b6eb","url":"index.html"},{"revision":"8f6ee56454cb08ee37a8926eb87383ef","url":"android-chrome-192x192.png"},{"revision":"4f4ed8fa819b064ad3457e71cc14881b","url":"android-chrome-512x512.png"},{"revision":"3a88b7dd465b5240859373e925eadadc","url":"manifest.webmanifest"}]);
+ae([{"revision":null,"url":"assets/calendar-8asP7F9w.js"},{"revision":null,"url":"assets/calendar-J7mWU-Ms.js"},{"revision":null,"url":"assets/calendar-RCPTS3RH.js"},{"revision":null,"url":"assets/index-ahZNqDCJ.css"},{"revision":null,"url":"assets/index-ZVAFZc-_.js"},{"revision":null,"url":"assets/lastUpdate-ixDICNlU.js"},{"revision":null,"url":"assets/lastUpdate-MDNwJ3_S.js"},{"revision":null,"url":"assets/lastUpdate-TzYInxk0.js"},{"revision":"0fb31a24c30e8c0c44aeae3a76d661e8","url":"index.html"},{"revision":"8f6ee56454cb08ee37a8926eb87383ef","url":"android-chrome-192x192.png"},{"revision":"4f4ed8fa819b064ad3457e71cc14881b","url":"android-chrome-512x512.png"},{"revision":"3a88b7dd465b5240859373e925eadadc","url":"manifest.webmanifest"}]);
 T(
   new RegExp("/assets/img/"),
   new re({
